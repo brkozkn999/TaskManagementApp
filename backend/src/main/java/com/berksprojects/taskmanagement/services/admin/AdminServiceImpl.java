@@ -1,0 +1,79 @@
+package com.berksprojects.taskmanagement.services.admin;
+
+import com.berksprojects.taskmanagement.dto.TaskDto;
+import com.berksprojects.taskmanagement.dto.UserDto;
+import com.berksprojects.taskmanagement.entities.Task;
+import com.berksprojects.taskmanagement.entities.User;
+import com.berksprojects.taskmanagement.enums.UserRole;
+import com.berksprojects.taskmanagement.repositories.TaskRepository;
+import com.berksprojects.taskmanagement.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+public class AdminServiceImpl implements AdminService{
+
+    private final UserRepository userRepository;
+    private final TaskRepository taskRepository;
+
+    @Override
+    public List<UserDto> getUsers() {
+        return userRepository.findAll()
+                .stream()
+                .filter(user -> user.getUserRole() == UserRole.EMPLOYEE)
+                .map(User::getUserDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public TaskDto createTask(TaskDto taskDto) {
+        Optional<User> optionalUser = userRepository.findById(taskDto.getEmployeeId());
+        if (optionalUser.isPresent()) {
+            Task task = new Task();
+            task.setTitle(taskDto.getTitle());
+            task.setDescription(taskDto.getDescription());
+            task.setPriority(taskDto.getPriority());
+            task.setDueDate(taskDto.getDueDate());
+            task.setTaskStatus(taskDto.getTaskStatus());
+            task.setUser(optionalUser.get());
+            return taskRepository.save(task).getTaskDto();
+        }
+        return null;
+    }
+
+    @Override
+    public List<TaskDto> getAllTasks() {
+        return taskRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Task::getDueDate).reversed())
+                .map(Task::getTaskDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteTask(Long id) {
+        taskRepository.deleteById(id);
+    }
+
+    @Override
+    public TaskDto updateTask(Long id, TaskDto taskDto) {
+        Optional<Task> optionalTask = taskRepository.findById(id);
+
+        if (optionalTask.isPresent()) {
+            Task task = optionalTask.get();
+            task.setTitle(taskDto.getTitle());
+            task.setDescription(taskDto.getDescription());
+            task.setPriority(taskDto.getPriority());
+            task.setDueDate(taskDto.getDueDate());
+            Task updatedTask = taskRepository.save(task);
+            return updatedTask.getTaskDto();
+        }
+        return null;
+    }
+}
