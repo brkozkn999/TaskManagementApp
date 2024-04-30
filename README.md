@@ -16,7 +16,7 @@ This application allows managers to assign tasks to employees, monitor the statu
 ## Development Instructions for Backend
 
 - `git clone https://github.com/brkozkn999/TaskManagementApp.git`
-- `cd task-manager-app, cd backend`
+- `cd TaskManagementApp, cd backend`
 - open with favorite editor, or
 - `mvnw spring-boot:run`
 - open http://localhost:8080
@@ -25,7 +25,7 @@ This application allows managers to assign tasks to employees, monitor the statu
 ## Development Instructions for Frontend
 
 - `git clone https://github.com/brkozkn999/FileServiceApp.git`
-- `cd task-manager-app, cd frontend`
+- `cd TaskManagementApp, cd frontend`
 - open with favorite editor, or
 - `npm install, npm run build, ng serve`
 - open http://localhost:4200
