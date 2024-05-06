@@ -4,6 +4,7 @@ import com.berksprojects.taskmanagement.dto.TaskDto;
 import com.berksprojects.taskmanagement.dto.UserDto;
 import com.berksprojects.taskmanagement.entities.Task;
 import com.berksprojects.taskmanagement.entities.User;
+import com.berksprojects.taskmanagement.enums.TaskStatus;
 import com.berksprojects.taskmanagement.enums.UserRole;
 import com.berksprojects.taskmanagement.repositories.TaskRepository;
 import com.berksprojects.taskmanagement.repositories.UserRepository;
@@ -62,18 +63,33 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
+    public TaskDto getTaskById(Long id) {
+        Optional<Task> optionalTask = taskRepository.findById(id);
+        return optionalTask.map(Task::getTaskDto).orElse(null);
+    }
+
+    @Override
     public TaskDto updateTask(Long id, TaskDto taskDto) {
         Optional<Task> optionalTask = taskRepository.findById(id);
-
         if (optionalTask.isPresent()) {
-            Task task = optionalTask.get();
-            task.setTitle(taskDto.getTitle());
-            task.setDescription(taskDto.getDescription());
-            task.setPriority(taskDto.getPriority());
-            task.setDueDate(taskDto.getDueDate());
-            Task updatedTask = taskRepository.save(task);
-            return updatedTask.getTaskDto();
+            Task existingTask = optionalTask.get();
+            existingTask.setTitle(taskDto.getTitle());
+            existingTask.setDescription(taskDto.getDescription());
+            existingTask.setDueDate(taskDto.getDueDate());
+            existingTask.setPriority(taskDto.getPriority());
+            existingTask.setTaskStatus(mapStringToTaskStatus(String.valueOf(taskDto.getTaskStatus())));
+            return taskRepository.save(existingTask).getTaskDto();
         }
         return null;
+    }
+
+    private TaskStatus mapStringToTaskStatus(String status) {
+        return switch (status) {
+            case "PENDING" -> TaskStatus.PENDING;
+            case "INPROGRESS" -> TaskStatus.INPROGRESS;
+            case "COMPLETED" -> TaskStatus.COMPLETED;
+            case "DEFERRED" -> TaskStatus.DEFERRED;
+            default -> TaskStatus.CANCELLED;
+        };
     }
 }

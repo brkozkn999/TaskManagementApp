@@ -14,7 +14,7 @@ export class DashboardComponent {
     private snackbar: MatSnackBar
   ) {
     this.getTasks();
-   }
+  }
 
   getTasks() {
     this.service.getAllTasks().subscribe((res)=> {
@@ -27,9 +27,5 @@ export class DashboardComponent {
       this.snackbar.open("Task deleted successfully.", "Close", {duration: 5000});
       this.getTasks();
     })
-  }
-
-  updateTask(id:number) {
-    
   }
 }

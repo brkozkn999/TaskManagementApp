@@ -46,4 +46,9 @@ public class AdminController {
         }
         return ResponseEntity.ok(updatedTaskDto);
     }
+
+    @GetMapping("/task/{id}")
+    public ResponseEntity<TaskDto> getTaskById(@PathVariable Long id) {
+        return ResponseEntity.ok(adminService.getTaskById(id));
+    }
 }
