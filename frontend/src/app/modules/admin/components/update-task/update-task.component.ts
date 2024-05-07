@@ -15,6 +15,7 @@ export class UpdateTaskComponent {
   id: number;
   listOfPriorities: any = ["LOW", "MEDIUM", "HIGH"];
   listOfStatus: any = ["PENDING", "INPROGRESS", "COMPLETED", "DEFERRED", "CANCELLED"];
+  task: any; 
 
   constructor(private service:AdminService,
     private route: ActivatedRoute,
@@ -35,6 +36,7 @@ export class UpdateTaskComponent {
   getTaskById() {
     this.service.getTaskById(this.id).subscribe((res) => {
       console.log(res);
+      this.task = res;
     })
   }
 

@@ -2,10 +2,10 @@ package com.berksprojects.taskmanagement.controller.admin;
 
 import com.berksprojects.taskmanagement.dto.TaskDto;
 import com.berksprojects.taskmanagement.services.admin.AdminService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor

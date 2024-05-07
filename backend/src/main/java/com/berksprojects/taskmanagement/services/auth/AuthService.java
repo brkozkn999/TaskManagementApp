@@ -6,6 +6,5 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public interface AuthService {
     UserDto signupUser(SignupRequest signupRequest);
-
     boolean hasUserWithEmail(String email);
 }

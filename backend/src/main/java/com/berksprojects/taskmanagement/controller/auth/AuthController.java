@@ -5,7 +5,6 @@ import com.berksprojects.taskmanagement.dto.AuthenticationResponse;
 import com.berksprojects.taskmanagement.dto.SignupRequest;
 import com.berksprojects.taskmanagement.dto.UserDto;
 import com.berksprojects.taskmanagement.entities.User;
-import com.berksprojects.taskmanagement.enums.UserRole;
 import com.berksprojects.taskmanagement.repositories.UserRepository;
 import com.berksprojects.taskmanagement.services.auth.AuthService;
 import com.berksprojects.taskmanagement.services.jwt.UserService;

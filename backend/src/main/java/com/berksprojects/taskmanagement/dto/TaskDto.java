@@ -2,7 +2,6 @@ package com.berksprojects.taskmanagement.dto;
 
 import com.berksprojects.taskmanagement.enums.TaskStatus;
 import lombok.Data;
-
 import java.util.Date;
 
 @Data

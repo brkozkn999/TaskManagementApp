@@ -8,7 +8,7 @@ import java.util.List;
 public interface EmployeeService {
     List<TaskDto> getEmployeeTasksById(Long userId);
     Long getCurrentEmployeeId();
-    TaskDto updateTaskStatus(Long id, TaskDto taskDto);
+    TaskDto updateTaskStatus(Long id, TaskStatus taskStatus);
     TaskDto getTaskById(Long taskId);
 
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/employee")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:4200" )
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -32,12 +32,22 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeTasks);
     }
 
+    private TaskStatus mapStringToTaskStatus(String status) {
+        return switch (status) {
+            case "PENDING" -> TaskStatus.PENDING;
+            case "INPROGRESS" -> TaskStatus.INPROGRESS;
+            case "COMPLETED" -> TaskStatus.COMPLETED;
+            case "DEFERRED" -> TaskStatus.DEFERRED;
+            default -> TaskStatus.CANCELLED;
+        };
+    }
+
     @PutMapping("/tasks/{id}")
-    public ResponseEntity<TaskDto> updateTask(@PathVariable Long id, @RequestBody TaskDto taskDto) {
-        TaskDto updatedTaskDto = employeeService.updateTaskStatus(id, taskDto);
-        if (updatedTaskDto == null) {
+    public ResponseEntity<TaskDto> updateTaskStatus(@PathVariable Long id, @RequestBody String newStatus) {
+        TaskDto updatedTaskDto = employeeService.updateTaskStatus(id, mapStringToTaskStatus(newStatus));
+        if (updatedTaskDto == null)
             return ResponseEntity.notFound().build();
-        }
+
         return ResponseEntity.ok(updatedTaskDto);
     }
 }

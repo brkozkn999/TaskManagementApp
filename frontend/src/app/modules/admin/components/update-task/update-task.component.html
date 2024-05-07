@@ -1,11 +1,11 @@
 <div class="container">
-    <mat-card >
-        <mat-card-title>Update Task</mat-card-title>
+    <mat-card>
+        <mat-card-title>Update Task: <strong>{{ this.task.title }}</strong></mat-card-title>
         <mat-card-content>
             <form [formGroup]="taskUpdateForm" (ngSubmit)="updateTask()">
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>New Title</mat-label>
-                    <input matInput type="text" placeholder="New Title" formControlName="title">
+                    <input matInput type="text" placeholder="{{ this.task.title }}" formControlName="title">
                     <mat-error *ngIf="taskUpdateForm.get('title')?.hasError('required')">
                         New Title is required.
                     </mat-error>
@@ -13,7 +13,7 @@
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>New Description</mat-label>
-                    <textarea matInput placeholder="New Description" formControlName="description"></textarea>
+                    <textarea matInput placeholder="{{ this.task.description }}" formControlName="description"></textarea>
                     <mat-error *ngIf="taskUpdateForm.get('description')?.hasError('required')">
                         New Description is required.
                     </mat-error>
@@ -21,7 +21,7 @@
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Select the Priority</mat-label>
-                    <mat-select formControlName="priority" name="Priority" placeholder="Select Priority">
+                    <mat-select formControlName="priority" name="Priority" placeholder="{{this.task.priority}}">
                         <mat-option *ngFor="let priority of listOfPriorities" [value]="priority">
                             {{priority}}
                         </mat-option>
@@ -33,7 +33,7 @@
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>New Due Date</mat-label>
-                    <input matInput [matDatepicker]="dueDatePicker" placeholder="Choose a new due date" formControlName="dueDate">
+                    <input matInput [matDatepicker]="dueDatePicker" placeholder="{{this.task.dueDate}}" formControlName="dueDate">
                     <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #dueDatePicker></mat-datepicker>
                     <mat-error *ngIf="taskUpdateForm.get('dueDate')?.hasError('required')">
@@ -43,7 +43,7 @@
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Select the Status</mat-label>
-                    <mat-select formControlName="status" name="Status" placeholder="Select Status">
+                    <mat-select formControlName="status" name="Status" placeholder="{{ this.task.status }}">
                         <mat-option *ngFor="let status of listOfStatus" [value]="status">
                             {{status}}
                         </mat-option>

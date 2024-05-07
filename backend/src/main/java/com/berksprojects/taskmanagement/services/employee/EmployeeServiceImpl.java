@@ -48,11 +48,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public TaskDto updateTaskStatus(Long id, TaskDto taskDto) {
+    public TaskDto updateTaskStatus(Long id, TaskStatus newStatus) {
         Optional<Task> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {
             Task existingTask = optionalTask.get();
-            existingTask.setTaskStatus(mapStringToTaskStatus(String.valueOf(taskDto.getTaskStatus())));
+            existingTask.setTaskStatus(newStatus);
             return taskRepository.save(existingTask).getTaskDto();
         }
         return null;
@@ -67,7 +67,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             default -> TaskStatus.CANCELLED;
         };
     }
-
     @Override
     public TaskDto getTaskById(Long taskId) {
         Optional<Task> optionalTask = taskRepository.findById(taskId);
