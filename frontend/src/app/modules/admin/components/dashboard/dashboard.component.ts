@@ -11,8 +11,7 @@ export class DashboardComponent {
 
   listOfTasks: any = [];
   constructor(private service: AdminService,
-    private snackbar: MatSnackBar
-  ) {
+    private snackbar: MatSnackBar) {
     this.getTasks();
   }
 

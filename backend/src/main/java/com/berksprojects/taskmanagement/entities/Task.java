@@ -40,5 +40,4 @@ public class Task {
         taskDto.setPriority(priority);
         return taskDto;
     }
-
 }
