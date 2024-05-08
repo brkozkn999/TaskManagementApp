@@ -41,18 +41,6 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="form-field">
-                    <mat-label>Select the Status</mat-label>
-                    <mat-select formControlName="status" name="Status" placeholder="{{ this.task.status }}">
-                        <mat-option *ngFor="let status of listOfStatus" [value]="status">
-                            {{status}}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="taskUpdateForm.get('status')?.hasError('required')">
-                        New status is required.
-                    </mat-error>
-                </mat-form-field>
-
                 <button mat-raised-button color="primary" type="submit" [disabled]="taskUpdateForm.invalid" (ngSubmit)="updateTask()">
                     Update Task
                 </button>

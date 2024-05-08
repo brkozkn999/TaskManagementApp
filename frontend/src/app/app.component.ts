@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from './auth/service/storage/storage.service';
 import { Router } from '@angular/router';
 
-
-/* CLASSI BOŞALTINCA HATA ÇÖZÜLÜYOR
-  PROBLEM STROAGE SERVICE(?)'DE*/
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
