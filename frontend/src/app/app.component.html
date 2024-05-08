@@ -1,3 +1,23 @@
+<mat-toolbar color="primary" class="mat-elevation-z3">
+    <button mat-icon-button (click)="collapsed.set(!collapsed())" *ngIf="isEmployeeLogged || isAdminLogged">
+      <mat-icon *ngIf="isEmployeeLogged || isAdminLogged">menu</mat-icon>
+    </button>
+  <button mat-button routerLink="/login" routerLinkActive="active" class="navigate-buttons" *ngIf="!isEmployeeLogged && !isAdminLogged">Login</button>
+  <button mat-button routerLink="/signup" routerLinkActive="active" class="navigate-buttons" *ngIf="!isEmployeeLogged && !isAdminLogged">Register</button>
+  <button mat-button (click)="logout()" routerLinkActive="active" class="navigate-buttons" *ngIf="isEmployeeLogged || isAdminLogged">Logout</button>
+</mat-toolbar>
+<mat-sidenav-container *ngIf="isEmployeeLogged || isAdminLogged">
+  <mat-sidenav opened mode="side" [style.width]="sidenavWitdh()">
+    <app-custom-sidenav-component [collapsed]="collapsed()"></app-custom-sidenav-component>
+  </mat-sidenav>
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWitdh()">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<router-outlet></router-outlet>
+
+
+<!--
 <div *ngIf="!isEmployeeLogged && !isAdminLogged">
   <mat-toolbar color="primary" class="navbar">
     <span class="navbar-brand">Task Management System</span>
@@ -8,13 +28,14 @@
 </div>
 
 <div *ngIf="isAdminLogged">
-  <mat-toolbar color="primary" class="navbar">
+  <mat-toolbar color="primary" class="navbar mat-elevation-z14">
+    <mat-icon>menu</mat-icon>
     <span class="navbar-brand">Admin</span>
     <span class="spacer"></span>
     <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
     <button mat-button routerLink="/admin/task" routerLinkActive="active">Post Task</button>
     <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
-  </mat-toolbar>
+  </mat-toolbar>  
 </div>
 
 <div *ngIf="isEmployeeLogged">
@@ -27,3 +48,4 @@
 </div>
 
 <router-outlet></router-outlet>
+-->

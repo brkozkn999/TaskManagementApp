@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { StorageService } from './auth/service/storage/storage.service';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   isEmployeeLogged: boolean = StorageService.isEmployeeLoggedIn();
   isAdminLogged: boolean = StorageService.isAdminLoggedIn();
+  
+  collapsed = signal(false);
+  sidenavWitdh = computed(() => this.collapsed() ? '65px' : '250px');
 
   constructor(private router: Router) {}
 

@@ -3,7 +3,6 @@
         <div class="task-details">
             <h2 class="task-name">{{ task.title }}</h2>
             <p class="task-description">{{ task.description }}</p>
-
             <mat-divider></mat-divider>
             <div class="task-info">
                 <div class="info-row">
@@ -36,7 +35,7 @@
                     <mat-icon>edit</mat-icon>
                 </a>
                 
-                <button mat-icon-button color="warn" class="delete-button" (click)="deleteTask(task.id)">
+                <button mat-icon-button color="warn" class="delete-button" (click)="surePopUp()">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>

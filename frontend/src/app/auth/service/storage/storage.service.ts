@@ -38,7 +38,7 @@ export class StorageService {
       return '';
 
     return user.role;
-  }
+  }  
 
   static isAdminLoggedIn(): boolean {
     if (this.getToken() === null)
