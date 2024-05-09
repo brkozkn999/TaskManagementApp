@@ -5,39 +5,51 @@
             <form [formGroup]="taskUpdateForm" (ngSubmit)="updateTask()">
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>New Title</mat-label>
-                    <input matInput type="text" placeholder="{{ this.task.title }}" formControlName="title">
+                    <input matInput type="text" placeholder="New title" formControlName="title">
                     <mat-error *ngIf="taskUpdateForm.get('title')?.hasError('required')">
-                        New Title is required.
+                        Title is required.
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>New Description</mat-label>
-                    <textarea matInput placeholder="{{ this.task.description }}" formControlName="description"></textarea>
+                    <textarea matInput placeholder="New description" formControlName="description"></textarea>
                     <mat-error *ngIf="taskUpdateForm.get('description')?.hasError('required')">
-                        New Description is required.
+                        Description is required.
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Select the Priority</mat-label>
-                    <mat-select formControlName="priority" name="Priority" placeholder="{{this.task.priority}}">
+                    <mat-select formControlName="priority" name="Priority" placeholder="New priority">
                         <mat-option *ngFor="let priority of listOfPriorities" [value]="priority">
                             {{priority}}
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="taskUpdateForm.get('priority')?.hasError('required')">
-                        New priority is required.
+                        priority is required.
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>New Due Date</mat-label>
-                    <input matInput [matDatepicker]="dueDatePicker" placeholder="{{this.task.dueDate}}" formControlName="dueDate">
+                    <input matInput [matDatepicker]="dueDatePicker" placeholder="New due date" formControlName="dueDate">
                     <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #dueDatePicker></mat-datepicker>
                     <mat-error *ngIf="taskUpdateForm.get('dueDate')?.hasError('required')">
-                        New Due date is required.
+                        Due date is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Select the Employee</mat-label>
+                    <mat-select formControlName="employeeId" name="employeeId">
+                        <mat-option *ngFor="let employee of listOfEmployees" [value]="employee.id">
+                            {{ employee.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="taskUpdateForm.get('employeeId')?.hasError('required')">
+                        Employee is required.
                     </mat-error>
                 </mat-form-field>
 

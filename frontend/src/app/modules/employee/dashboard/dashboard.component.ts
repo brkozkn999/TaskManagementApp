@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
   listOfTasks: any = [];
@@ -17,6 +17,11 @@ export class DashboardComponent {
   getEmployeeTasks() {
     this.service.getAllEmployeeTasks().subscribe((res)=> {
       this.listOfTasks = res;
+      this.sortTasksByDueDate();
     })
+  }
+
+  sortTasksByDueDate(): void {
+    this.listOfTasks.sort((a: any, b: any) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
   }
 }

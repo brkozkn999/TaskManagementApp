@@ -15,6 +15,7 @@ export class UpdateTaskComponent {
   id: number;
   listOfPriorities: any = ["LOW", "MEDIUM", "HIGH"];
   listOfStatus: any = ["PENDING", "INPROGRESS", "COMPLETED", "DEFERRED", "CANCELLED"];
+  listOfEmployees: any = [];
   task: any; 
 
   constructor(private service:AdminService,
@@ -24,7 +25,9 @@ export class UpdateTaskComponent {
     private router:Router) {
     this.id = +this.route.snapshot.params['id'];
     this.getTaskById();
+    this.getUsers();
     this.taskUpdateForm = this.fb.group({
+      employeeId: [null, [Validators.required]],
       title:[null, [Validators.required]],
       description:[null, [Validators.required]],
       dueDate:[null, [Validators.required]],
@@ -34,8 +37,16 @@ export class UpdateTaskComponent {
 
   getTaskById() {
     this.service.getTaskById(this.id).subscribe((res) => {
+      this.taskUpdateForm.patchValue(res);
       console.log(res);
       this.task = res;
+    })
+  }
+
+  getUsers() {
+    this.service.getUser().subscribe((res)=>{
+      this.listOfEmployees = res;
+      console.log(res);
     })
   }
 

@@ -11,7 +11,6 @@ import { DemoAngularMaterialModule } from './DemoAngularMaterialModule';
 import { MatToolbar } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './modules/employee/dashboard/dashboard.component';
 import { CustomSidenavComponentComponent } from './components/custom-sidenav-component/custom-sidenav-component.component';
 
 @NgModule({

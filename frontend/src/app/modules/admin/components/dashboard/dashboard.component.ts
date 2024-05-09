@@ -21,16 +21,14 @@ export class DashboardComponent {
   getTasks() {
     this.service.getAllTasks().subscribe((res)=> {
       this.listOfTasks = res;
+      this.sortTasksByDueDate();
     })
   }
 
-  deleteTask(id:number) {
-    this.service.deleteTasks(id).subscribe((res) => {
-      this.snackbar.open("Task deleted successfully.", "Close", {duration: 5000});
-      this.getTasks();
-    })
+  sortTasksByDueDate(): void {
+    this.listOfTasks.sort((a: any, b: any) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
   }
-  //deleteTask(task.id)
+
   openDialog(task:any) {
     this.popupService.popupDialog({
       id: task.id,
