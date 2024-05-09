@@ -1,6 +1,6 @@
 <div class="container">
     <mat-card>
-        <mat-card-title>Update Task: <strong>{{ this.task.title }}</strong></mat-card-title>
+        <mat-card-title>Update Task: <strong><br>{{ this.task.title }}</strong></mat-card-title>
         <mat-card-content>
             <form [formGroup]="taskUpdateForm" (ngSubmit)="updateTask()">
                 <mat-form-field appearance="outline" class="form-field">
