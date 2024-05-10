@@ -19,6 +19,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
 import { MatListModule } from "@angular/material/list";
 import { MatSidenavModule } from "@angular/material/sidenav";
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
     exports: [
@@ -41,7 +42,8 @@ import { MatSidenavModule } from "@angular/material/sidenav";
         MatDialogModule,
         MatTableModule,
         MatListModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatButtonToggleModule
     ]
 })
 export class DemoAngularMaterialModule {
