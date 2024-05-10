@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PopupService } from '../../../../auth/service/popup/popup.service';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { FilterPipe } from './filter.pipe';
 
 interface TaskPriority {
   LOW: number;
@@ -21,8 +22,11 @@ export class DashboardComponent {
   searchText:string = '';
   constructor(private service: AdminService,
               private popupService: PopupService,
-              private snackbar: MatSnackBar) {
+              private fb: FormBuilder) {
     this.getTasks();
+    this.searchForm = this.fb.group({
+      searchText:[null],
+    })
   }
 
   getTasks() {

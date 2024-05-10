@@ -1,27 +1,3 @@
-<div class="sort-selection">
-    <mat-button-toggle-group appearance="legacy" name="sort-selection" aria-label="Sort by" class="button-toggle" (change)="sortTasksByToggleValue($event.value)">
-        <mat-button-toggle value="desc-date">
-            <mat-icon style="color: green;">access_time</mat-icon>
-            <mat-icon>arrow_downward</mat-icon>
-        </mat-button-toggle>
-        
-        <mat-button-toggle value="asc-date">
-            <mat-icon style="color: green;">access_time</mat-icon>
-            <mat-icon>arrow_upward</mat-icon>
-        </mat-button-toggle>
-        
-        <mat-button-toggle value="desc-priority">
-            <mat-icon style="color: red">emergency</mat-icon>
-            <mat-icon>arrow_upward</mat-icon>
-        </mat-button-toggle>
-        
-        <mat-button-toggle value="asc-priority">
-            <mat-icon style="color: red">emergency</mat-icon>
-            <mat-icon>arrow_downward</mat-icon>
-        </mat-button-toggle>
-    </mat-button-toggle-group>
-</div>
-
 <div class="task-list">
     <mat-card class="task-card" *ngFor="let task of listOfTasks">
         <div class="task-details">
@@ -42,7 +18,8 @@
                     <span class="info-value">{{ task.taskStatus }}</span>
                 </div>
             </div>
-            <mat-divider></mat-divider>            
+            <mat-divider></mat-divider>
+            
             <a mat-icon-button color="primary" class="view-button" [routerLink]="'/employee/task/' + task.id + '/edit'">
                 <mat-icon>edit</mat-icon>
             </a>

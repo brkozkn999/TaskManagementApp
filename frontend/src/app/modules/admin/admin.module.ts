@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
 import { PopupComponent } from './components/popup/popup.component';
+import { FilterPipe } from './components/dashboard/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PopupComponent } from './components/popup/popup.component';
     PostTaskComponent,
     UpdateTaskComponent,
     PopupComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,

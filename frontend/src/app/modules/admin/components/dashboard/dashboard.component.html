@@ -22,19 +22,17 @@
     </mat-button-toggle-group>
 </div>
 
-<!-- yeni eklenen kod -->
 <div class="search-box">
-    <form>
+    <form [formGroup]="searchForm">
         <mat-form-field appearance="outline" class="form-field">
             <mat-label>Search</mat-label>
-            <input matInput type="text" placeholder="Search" formControlName="keyword">
+            <input matInput type="text" placeholder="Search" formControlName="searchText" [(ngModel)]="searchText">
         </mat-form-field>
     </form>
 </div>
-<!-- --------------------- -->
 
 <div class="task-list">
-    <mat-card class="task-card" *ngFor="let task of listOfTasks">
+    <mat-card class="task-card" *ngFor="let task of listOfTasks | filter: searchText">
         <div class="task-details">
             <h2 class="task-name">{{ task.title }}</h2>
             <p class="task-description">{{ task.description }}</p>

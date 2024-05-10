@@ -28,7 +28,7 @@ import { CustomSidenavComponentComponent } from './components/custom-sidenav-com
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatToolbar,
+    MatToolbar
   ],
   providers: [
     provideAnimationsAsync()
