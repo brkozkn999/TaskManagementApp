@@ -14,7 +14,7 @@ import { PopupComponent } from './components/popup/popup.component';
     DashboardComponent,
     PostTaskComponent,
     UpdateTaskComponent,
-    PopupComponent
+    PopupComponent,
   ],
   imports: [
     CommonModule,

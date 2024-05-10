@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PopupComponent } from '../popup/popup.component';
 import { PopupService } from '../../../../auth/service/popup/popup.service';
+import { FormGroup } from '@angular/forms';
 
 interface TaskPriority {
   LOW: number;
@@ -16,8 +16,9 @@ interface TaskPriority {
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-
+  searchForm!: FormGroup;
   listOfTasks: any = [];
+  searchText:string = '';
   constructor(private service: AdminService,
               private popupService: PopupService,
               private snackbar: MatSnackBar) {
