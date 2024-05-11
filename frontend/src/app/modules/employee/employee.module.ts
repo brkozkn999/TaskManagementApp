@@ -6,12 +6,14 @@ import { DemoAngularMaterialModule } from '../../DemoAngularMaterialModule';
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FiterpipePipe } from './dashboard/fiterpipe.pipe';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    UpdateTaskComponent
+    UpdateTaskComponent,
+    FiterpipePipe
   ],
   imports: [
     CommonModule,

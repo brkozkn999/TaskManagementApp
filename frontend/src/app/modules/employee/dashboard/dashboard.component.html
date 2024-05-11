@@ -1,5 +1,38 @@
+<div class="sort-selection">
+    <mat-button-toggle-group appearance="legacy" name="sort-selection" aria-label="Sort by" class="button-toggle" (change)="sortTasksByToggleValue($event.value)" [hideSingleSelectionIndicator]="true">
+        <mat-button-toggle value="desc-date">
+            <mat-icon style="color: green;">access_time</mat-icon>
+            <mat-icon>arrow_downward</mat-icon>
+        </mat-button-toggle>
+        
+        <mat-button-toggle value="asc-date" >
+            <mat-icon style="color: green;">access_time</mat-icon>
+            <mat-icon>arrow_upward</mat-icon>
+        </mat-button-toggle>
+        
+        <mat-button-toggle value="desc-priority">
+            <mat-icon style="color: red">emergency</mat-icon>
+            <mat-icon>arrow_upward</mat-icon>
+        </mat-button-toggle>
+        
+        <mat-button-toggle value="asc-priority">
+            <mat-icon style="color: red">emergency</mat-icon>
+            <mat-icon>arrow_downward</mat-icon>
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+</div>
+
+<div class="search-box">
+    <form [formGroup]="searchForm">
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Search</mat-label>
+            <input matInput type="text" placeholder="Search" formControlName="searchText" [(ngModel)]="searchText">
+        </mat-form-field>
+    </form>
+</div>
+
 <div class="task-list">
-    <mat-card class="task-card" *ngFor="let task of listOfTasks">
+    <mat-card class="task-card" *ngFor="let task of listOfTasks | fiterpipe: searchText">
         <div class="task-details">
             <h2 class="task-name">{{ task.title }}</h2>
             <p class="task-description">{{ task.description }}</p>

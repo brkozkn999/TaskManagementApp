@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { PopupService } from '../../../../auth/service/popup/popup.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FilterPipe } from './filter.pipe';
 
 interface TaskPriority {
   LOW: number;
