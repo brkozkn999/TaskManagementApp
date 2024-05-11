@@ -14,6 +14,7 @@ export class PostTaskComponent {
   taskForm!: FormGroup;
   listOfEmployees: any = [];
   listOfPriorities: any = ["LOW", "MEDIUM", "HIGH"];
+  listOfStatus: any = ["PENDING", "INPROGRESS", "COMPLETED", "DEFERRED", "CANCELLED"];
 
   constructor(private adminService: AdminService,
     private fb: FormBuilder,
@@ -28,7 +29,7 @@ export class PostTaskComponent {
       description:[null, [Validators.required]],
       dueDate:[null, [Validators.required]],
       priority:[null, [Validators.required]],
-      status: ["PENDING"]
+      taskStatus:[null, [Validators.required]]
     })
   }
 
@@ -53,7 +54,7 @@ export class PostTaskComponent {
         this.snackBar.open("Task posted successfully!", "Close", {duration:5000});
         this.router.navigateByUrl("/admin/dashboard");
       }
-      else{
+      else {
         this.snackBar.open("Something went wrong.", "ERROR", {duration:5000});
       }
     })

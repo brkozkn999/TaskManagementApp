@@ -24,6 +24,14 @@ export class UpdateTaskComponent {
     this.employeeTaskUpdateForm = this.fb.group({
       status: [null, [Validators.required]]
     });
+    this.getTaskById();
+  }
+
+  getTaskById() {
+    this.service.getTaskById(this.id).subscribe((res) => {
+      console.log(res);
+      this.task = res;
+    })
   }
 
   updateTaskStatus() {

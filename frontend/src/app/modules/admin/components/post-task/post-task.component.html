@@ -55,6 +55,18 @@
             </mat-error>
         </mat-form-field>
 
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Select the status</mat-label>
+            <mat-select formControlName="taskStatus" name="taskStatus">
+                <mat-option *ngFor="let status of listOfStatus" [value]="status">
+                    {{status}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="taskForm.get('taskStatus')?.hasError('required')">
+                Employee is required.
+            </mat-error>
+        </mat-form-field>
+
     <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid"
         (ngSubmit)="postTask()">Post Task</button>
     </form>

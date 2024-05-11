@@ -1,7 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+/*
+.darkTheme {
+    $dark-primary:mat.define-pallete(mat.$deep-purple-palette);
+    $dark-accent:mat.define-pallete(mat.$red-palette);
+    $dark-warn:mat.define-pallete(mat.$red-palette);
+
+    $dark-theme:mat.define-dark-theme((color:(primary:$dark-primary, accent:$dark-accent, warn:$dark-warn)));
+
+    @include mat.all-component-themes($dark-theme);
+    @import 'customthmes';
+}
+
+.lightTheme {
+    $light-primary:mat.define-pallete(mat.$deep-purple-palette);
+    $light-accent:mat.define-pallete(mat.$red-palette);
+    $light-warn:mat.define-pallete(mat.$red-palette);
+
+    $light-theme:mat.define-light-theme((color:(primary:$light-primary, accent:$light-accent, warn:$light-warn)));
+
+    @include mat.all-component-themes($light-theme);
+    @import 'customthmes';
+}
+*/
 
 html, body { 
-    margin: 0;
     height: 100%; 
     overflow-y: hidden;
 }

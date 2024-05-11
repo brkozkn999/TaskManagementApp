@@ -1,4 +1,14 @@
 <div class="sort-selection">
+    <form [formGroup]="sortForm">
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-select formControlName="sortType" name="sortType" [placeholder]="'Sort by'" (selectionChange)="sortTasksByToggleValue($event.value)">
+                <mat-option *ngFor="let sorts of listOfSort" [value]="sorts">
+                    {{sorts}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+    <!--
     <mat-button-toggle-group appearance="legacy" name="sort-selection" aria-label="Sort by" class="button-toggle" (change)="sortTasksByToggleValue($event.value)" [hideSingleSelectionIndicator]="true">
         <mat-button-toggle value="desc-date">
             <mat-icon style="color: green;">access_time</mat-icon>
@@ -20,6 +30,7 @@
             <mat-icon>arrow_downward</mat-icon>
         </mat-button-toggle>
     </mat-button-toggle-group>
+    -->
 </div>
 
 <div class="search-box">

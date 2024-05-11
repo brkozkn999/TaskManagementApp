@@ -15,16 +15,21 @@ interface TaskPriority {
 })
 export class DashboardComponent {
   searchForm!: FormGroup;
+  sortForm!: FormGroup;
   listOfTasks: any = [];
+  listOfSort: any = ["Nearest Date", "Furthest Date", "Most Important", "Least Important" ];
   searchText:string = '';
-
+  sortType:string = 'Nearest Date';
   constructor(private service: EmployeeService, 
-    private fb: FormBuilder)
-    {
+    private fb: FormBuilder) {
     this.getEmployeeTasks();
     this.searchForm = this.fb.group({
       searchText:[null],
-    })
+    });
+    this.sortForm = this.fb.group({
+      sortType: ['Nearest Date'],
+    
+    });
   }
 
   getEmployeeTasks() {
@@ -54,17 +59,17 @@ export class DashboardComponent {
 
   sortTasksByToggleValue(value: string): void {
     switch (value) {
-      case 'desc-date':
+      case 'Nearest Date':
         this.sortTasksByDueDateDesc();
         break;
-      case 'asc-date':
+      case 'Furthest Date':
         this.sortTasksByDueDateAsc();
         break;
-      case 'desc-priority':
-        this.sortTasksByPriorityDesc();
-        break;
-      case 'asc-priority':
+      case 'Most Important':
         this.sortTasksByPriorityAsc();
+        break;
+      case 'Least Important':
+        this.sortTasksByPriorityDesc();
         break;
       default:
         this.sortTasksByDueDateDesc();
