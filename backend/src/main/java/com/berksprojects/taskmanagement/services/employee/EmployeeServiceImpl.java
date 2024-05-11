@@ -48,6 +48,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public TaskDto getTaskById(Long taskId, Long employeeId) {
+        Optional<Task> optionalTask = taskRepository.findByIdAndUserId(taskId, employeeId);
+        return optionalTask.map(Task::getTaskDto).orElse(null);
+    }
+
+    @Override
     public TaskDto updateTaskStatus(Long id, TaskStatus newStatus) {
         Optional<Task> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {

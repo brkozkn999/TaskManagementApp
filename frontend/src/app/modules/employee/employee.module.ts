@@ -7,13 +7,15 @@ import { UpdateTaskComponent } from './components/update-task/update-task.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FiterpipePipe } from './dashboard/fiterpipe.pipe';
+import { ViewTaskComponent } from './view-task/view-task.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     UpdateTaskComponent,
-    FiterpipePipe
+    FiterpipePipe,
+    ViewTaskComponent
   ],
   imports: [
     CommonModule,

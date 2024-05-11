@@ -22,13 +22,11 @@ public class EmployeeController {
 
     @GetMapping("/tasks")
     public ResponseEntity<?> getEmployeeTasks() {
-        // Kullanıcının email adresine göre atanmış görevleri getir
         List<TaskDto> employeeTasks = employeeService.getEmployeeTasksById(employeeService.getCurrentEmployeeId());
 
         if (employeeTasks.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No tasks assigned to the employee");
         }
-
         return ResponseEntity.ok(employeeTasks);
     }
 
@@ -42,12 +40,27 @@ public class EmployeeController {
         };
     }
 
-    @PutMapping("/tasks/{id}")
+    @PutMapping("/task/{id}")
     public ResponseEntity<TaskDto> updateTaskStatus(@PathVariable Long id, @RequestBody String newStatus) {
         TaskDto updatedTaskDto = employeeService.updateTaskStatus(id, mapStringToTaskStatus(newStatus));
         if (updatedTaskDto == null)
             return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(updatedTaskDto);
+    }
+
+    @GetMapping("/task/{id}")
+    public ResponseEntity<?> getTaskById(@PathVariable Long id) {
+        Long employeeId = employeeService.getCurrentEmployeeId();
+
+        if (employeeId == null)
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+
+        TaskDto taskDto = employeeService.getTaskById(id, employeeId);
+
+        if (taskDto == null)
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(taskDto);
     }
 }

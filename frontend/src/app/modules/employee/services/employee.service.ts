@@ -25,7 +25,13 @@ export class EmployeeService {
   }
 
   updateTaskStatus(id: number, taskStatus: any): Observable<any> {
-    return this.http.put(BASIC_URL + "api/employee/tasks/" + id, taskStatus, {
+    return this.http.put(BASIC_URL + "api/employee/task/" + id, taskStatus, {
+      headers:this.createAuthorizationHeader()
+    })
+  }
+
+  getTaskById(id:number): Observable<any> {
+    return this.http.get(BASIC_URL + "api/employee/task/" + id, {
       headers:this.createAuthorizationHeader()
     })
   }

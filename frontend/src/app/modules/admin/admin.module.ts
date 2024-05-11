@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
 import { PopupComponent } from './components/popup/popup.component';
 import { FilterPipe } from './components/dashboard/filter.pipe';
+import { ViewTaskComponent } from './components/view-task/view-task.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FilterPipe } from './components/dashboard/filter.pipe';
     PostTaskComponent,
     UpdateTaskComponent,
     PopupComponent,
-    FilterPipe
+    FilterPipe,
+    ViewTaskComponent
   ],
   imports: [
     CommonModule,

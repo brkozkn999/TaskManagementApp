@@ -10,5 +10,5 @@ public interface EmployeeService {
     Long getCurrentEmployeeId();
     TaskDto updateTaskStatus(Long id, TaskStatus taskStatus);
     TaskDto getTaskById(Long taskId);
-
+    TaskDto getTaskById(Long taskId, Long employeeId);
 }

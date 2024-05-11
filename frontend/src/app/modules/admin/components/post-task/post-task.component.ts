@@ -3,6 +3,7 @@ import { AdminService } from '../../services/admin.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-post-task',
@@ -17,7 +18,8 @@ export class PostTaskComponent {
   constructor(private adminService: AdminService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private router:Router)
+    private router:Router,
+    private location: Location)
     {
     this.getUsers();
     this.taskForm = this.fb.group({
@@ -35,6 +37,13 @@ export class PostTaskComponent {
       this.listOfEmployees = res;
       console.log(res);
     })
+  }
+
+  refresh() : void {
+    this.router.navigateByUrl("/admin/dashboard", {skipLocationChange: true}).then(() => {
+      console.log(decodeURI(this.location.path()));
+      this.router.navigate([decodeURI(this.location.path())]);
+    });
   }
 
   postTask() {

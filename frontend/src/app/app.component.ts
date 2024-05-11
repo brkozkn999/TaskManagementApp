@@ -25,6 +25,6 @@ export class AppComponent {
 
   logout() {
     StorageService.logout();
-    this.router.navigateByUrl("/login")
+    this.router.navigateByUrl("/login");
   }
 }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { PopupService } from '../../../../auth/service/popup/popup.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 interface TaskPriority {
   LOW: number;
@@ -20,7 +22,8 @@ export class DashboardComponent {
   searchText:string = '';
   constructor(private service: AdminService,
               private popupService: PopupService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private router: Router) {
     this.getTasks();
     this.searchForm = this.fb.group({
       searchText:[null],

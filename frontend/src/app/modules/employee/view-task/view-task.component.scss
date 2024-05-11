@@ -44,10 +44,6 @@
             .task-description {
                 margin-bottom: 10px;
                 text-transform: lowercase;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                white-space: nowrap;
-                max-width: 40px;
             }
 
                 .task-info {
@@ -89,17 +85,3 @@
         }
     }
 }
-
-.sort-selection {
-    display: flex;
-    justify-content: end;
-    
-    .button-toggle {
-        transform: scale(0.8);
-    }
-}
-
-.search-box {
-    display: grid;
-    justify-content: center;
-}   
