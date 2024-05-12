@@ -1,3 +1,39 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$light-primary: mat.define-palette(mat.$indigo-palette, 500);
+$light-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$light-warn: mat.define-palette(mat.$red-palette);
+
+$light-theme: mat.define-light-theme((
+ color: (
+   primary: $light-primary,
+   accent: $light-accent,
+   warn: $light-warn,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+$dark-theme: mat.define-dark-theme((
+ color: (
+   primary: $light-primary,
+   accent: $light-accent,
+   warn: $light-warn,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+.dark-theme {
+    @include mat.all-component-colors($dark-theme);
+}
+
+.light-theme {
+    @include mat.all-component-colors($light-theme);
+}
+
 .sidenav-header {
     padding-top: 24px;
     text-align: center;
@@ -7,6 +43,7 @@
         border-radius: 100%;
         object-fit: cover;
         margin-bottom: 10px;
+        background-color: #fafafa;
     }
 
     .header-text {
@@ -28,4 +65,3 @@
 .hide-header-text {
     opacity: 0;
 }
-

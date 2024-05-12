@@ -8,80 +8,67 @@
             </mat-select>
         </mat-form-field>
     </form>
-    <!--
-    <mat-button-toggle-group appearance="legacy" name="sort-selection" aria-label="Sort by" class="button-toggle" (change)="sortTasksByToggleValue($event.value)" [hideSingleSelectionIndicator]="true">
-        <mat-button-toggle value="desc-date">
-            <mat-icon style="color: green;">access_time</mat-icon>
-            <mat-icon>arrow_downward</mat-icon>
-        </mat-button-toggle>
-        
-        <mat-button-toggle value="asc-date" >
-            <mat-icon style="color: green;">access_time</mat-icon>
-            <mat-icon>arrow_upward</mat-icon>
-        </mat-button-toggle>
-        
-        <mat-button-toggle value="desc-priority">
-            <mat-icon style="color: red">emergency</mat-icon>
-            <mat-icon>arrow_upward</mat-icon>
-        </mat-button-toggle>
-        
-        <mat-button-toggle value="asc-priority">
-            <mat-icon style="color: red">emergency</mat-icon>
-            <mat-icon>arrow_downward</mat-icon>
-        </mat-button-toggle>
-    </mat-button-toggle-group>
-    -->
 </div>
 
 <div class="search-box">
     <form [formGroup]="searchForm">
         <mat-form-field appearance="outline" class="form-field">
             <mat-label>Search</mat-label>
+            <mat-icon matSuffix>search</mat-icon>
             <input matInput type="text" placeholder="Search" formControlName="searchText" [(ngModel)]="searchText">
         </mat-form-field>
     </form>
 </div>
 
 <div class="task-list">
-    <mat-card class="task-card" *ngFor="let task of listOfTasks | filter: searchText">
-        <div class="task-details">
-            <h2 class="task-name">{{ task.title }}</h2>
-            <p class="task-description">{{ task.description }}</p>
-            <mat-divider></mat-divider>
-            <div class="task-info">
-                <div class="info-row">
-                    <span class="info-label">Due Date:</span>
-                    <span class="info-value">{{ task.dueDate | date: 'MMM d, y'}}</span>
+    <ng-container *ngIf="listOfTasks.length > 0; else noTasks">
+        <mat-card class="task-card" *ngFor="let task of listOfTasks | filter: searchText; let last = last">
+            <div class="task-details">
+                <h2 class="task-name">{{ task.title }}</h2>
+                <p class="task-description">{{ task.description }}</p>
+                <mat-divider></mat-divider>
+                <div class="task-info">
+                    <div class="info-row">
+                        <span class="info-label">Due Date:</span>
+                        <span class="info-value">{{ task.dueDate | date: 'MMM d, y'}}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Employee:</span>
+                        <span class="info-value">{{ task.employeeName }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Priority:</span>
+                        <span class="info-value">{{ task.priority }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Status:</span>
+                        <span class="info-value">{{ task.taskStatus }}</span>
+                    </div>
                 </div>
-                <div class="info-row">
-                    <span class="info-label">Employee:</span>
-                    <span class="info-value">{{ task.employeeName }}</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Priority:</span>
-                    <span class="info-value">{{ task.priority }}</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Status:</span>
-                    <span class="info-value">{{ task.taskStatus }}</span>
+                <mat-divider></mat-divider>
+                <div class="actions">
+                    <button mat-icon-button color="accent" class="view-button" [routerLink]="'/admin/task/' + task.id+ '/view'">
+                        <mat-icon>visibility</mat-icon>
+                    </button>
+                    <a mat-icon-button color="primary" class="update-button" [routerLink]="'/admin/task/' + task.id + '/edit'">
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                    <button mat-icon-button color="warn" class="delete-button" (click)="openDialog(task)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </div>
             </div>
+        </mat-card>
+    </ng-container>
+    <ng-template #noTasks>
+        <div class="task-list">
+            <p>No tasks found.</p>
+        </div>
+    </ng-template>
 
-            <mat-divider></mat-divider>
-            
-        <div class="actions">
-                <button mat-icon-button color="accent" class="view-button" [routerLink]="'/admin/task/' + task.id+ '/view'">
-                    <mat-icon>visibility</mat-icon>
-                </button>
-            
-                <a mat-icon-button color="primary" class="update-button" [routerLink]="'/admin/task/' + task.id + '/edit'">
-                    <mat-icon>edit</mat-icon>
-                </a>
-                
-                <button mat-icon-button color="warn" class="delete-button" (click)="openDialog(task)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
+    <mat-card class="add-task-card" (click)="addNewTask()">
+        <div class="add-task-content">
+            <p>Add new task</p>
         </div>
     </mat-card>
 </div>

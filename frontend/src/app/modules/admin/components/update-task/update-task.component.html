@@ -6,6 +6,7 @@
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>New Title</mat-label>
                     <input matInput type="text" placeholder="New title" formControlName="title">
+                    <mat-icon matSuffix>title</mat-icon>
                     <mat-error *ngIf="taskUpdateForm.get('title')?.hasError('required')">
                         Title is required.
                     </mat-error>
@@ -14,6 +15,7 @@
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>New Description</mat-label>
                     <textarea matInput placeholder="New description" formControlName="description"></textarea>
+                    <mat-icon matSuffix>description</mat-icon>
                     <mat-error *ngIf="taskUpdateForm.get('description')?.hasError('required')">
                         Description is required.
                     </mat-error>
@@ -66,7 +68,7 @@
                 </mat-form-field>
 
                 <button mat-raised-button color="primary" type="submit" [disabled]="taskUpdateForm.invalid" (ngSubmit)="updateTask()">
-                    Update Task
+                    Update Task <mat-icon matSuffix>edit</mat-icon>
                 </button>
             </form>
         </mat-card-content>

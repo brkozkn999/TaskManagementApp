@@ -68,6 +68,10 @@ export class DashboardComponent {
     this.listOfTasks.sort((a: any, b: any) => priorityOrder[b.priority as keyof TaskPriority] - priorityOrder[a.priority as keyof TaskPriority]);
   }
 
+  addNewTask() {
+    this.router.navigate(['/admin/task']);
+}
+
   sortTasksByToggleValue(value: string): void {
     switch (value) {
       case 'Nearest Date':

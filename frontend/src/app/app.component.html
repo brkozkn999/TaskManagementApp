@@ -1,10 +1,22 @@
 <mat-toolbar color="primary" class="mat-elevation-z3">
-    <button mat-icon-button (click)="collapsed.set(!collapsed())" *ngIf="isEmployeeLogged || isAdminLogged">
-      <mat-icon *ngIf="isEmployeeLogged || isAdminLogged">menu</mat-icon>
+  <button mat-icon-button (click)="toggleCollapse()" *ngIf="isEmployeeLogged || isAdminLogged">
+    <mat-icon>{{ collapsed() ? 'menu' : 'close' }}</mat-icon>
+  </button>
+    <button mat-icon-button matSuffix (click)="toggleTheme()" *ngIf="isEmployeeLogged || isAdminLogged">
+      <mat-icon>{{ this.switchTheme.value ? 'sunny' : 'dark_mode'}}</mat-icon>
     </button>
-  <button mat-button routerLink="/login" routerLinkActive="active" class="navigate-buttons" *ngIf="!isEmployeeLogged && !isAdminLogged">Login</button>
-  <button mat-button routerLink="/signup" routerLinkActive="active" class="navigate-buttons" *ngIf="!isEmployeeLogged && !isAdminLogged">Register</button>
-  <button mat-button (click)="logout()" routerLinkActive="active" class="navigate-buttons" *ngIf="isEmployeeLogged || isAdminLogged">Logout</button>
+  <button mat-button routerLink="/login" routerLinkActive="active" class="navigate-buttons" *ngIf="!isEmployeeLogged && !isAdminLogged">
+    Login
+    <mat-icon matSuffix>login</mat-icon>
+  </button>
+  <button mat-button routerLink="/signup" routerLinkActive="active" class="navigate-buttons" *ngIf="!isEmployeeLogged && !isAdminLogged">
+    Register
+    <mat-icon matSuffix>assignment</mat-icon>
+  </button>
+  <button mat-button (click)="logout()" routerLinkActive="active" class="navigate-buttons" *ngIf="isEmployeeLogged || isAdminLogged">
+    Logout
+    <mat-icon matSuffix>logout</mat-icon>
+  </button>
 </mat-toolbar>
 <mat-sidenav-container *ngIf="isEmployeeLogged || isAdminLogged">
   <mat-sidenav opened mode="side" [style.width]="sidenavWitdh()">

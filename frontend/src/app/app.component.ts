@@ -1,12 +1,14 @@
-import { Component, computed, Inject, OnInit, Renderer2, signal } from '@angular/core';
+import { Component, computed, HostBinding, Inject, OnInit, Renderer2, signal } from '@angular/core';
 import { StorageService } from './auth/service/storage/storage.service';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
+import { FormControl } from '@angular/forms';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'] // StyleUrl instead of styleUrl
 })
 export class AppComponent {
   isEmployeeLogged: boolean = StorageService.isEmployeeLoggedIn();
@@ -14,15 +16,32 @@ export class AppComponent {
   collapsed = signal(false);
   sidenavWitdh = computed(() => this.collapsed() ? '65px' : '250px');
 
+  switchTheme = new FormControl(false)
+  @HostBinding('class') className = ''
+  darkClass = 'dark-theme'
+  lightClass = 'light-theme'
+  @HostBinding('class.dark-theme') isDarkTheme = false;
+
   constructor(private router: Router,
               private render: Renderer2,
-              @Inject(DOCUMENT) private document:Document)
-              {
+              private overlay: OverlayContainer) {
 
-              }
+    }
+
+    toggleCollapse() {
+      this.collapsed.set(!this.collapsed());
+    }
 
   ngOnInit() {
-    this.render.addClass(this.document.body, 'lightTheme')
+    this.switchTheme.valueChanges.subscribe((res) => {
+      this.isDarkTheme = res!;
+      this.className = res ? this.darkClass : this.lightClass
+
+      if (res)
+        this.overlay.getContainerElement().classList.add(this.darkClass);
+      else
+      this.overlay.getContainerElement().classList.remove(this.darkClass);
+    })
     this.router.events.subscribe(event=>{
       this.isEmployeeLogged = StorageService.isEmployeeLoggedIn();
       this.isAdminLogged = StorageService.isAdminLoggedIn();
@@ -34,14 +53,7 @@ export class AppComponent {
     this.router.navigateByUrl("/login");
   }
 
-  //fix this
-  changeTheme(themeValue:string) {
-    this.render.removeClass(this.document.body, 'lightTheme')
-    this.render.removeClass(this.document.body, 'darkTheme')
-
-    if (themeValue == 'light')
-      this.render.removeClass(this.document.body, 'lightTheme')
-    else if (themeValue == 'dark')
-      this.render.addClass(this.document.body, 'darkTheme')
+  toggleTheme() {
+    this.switchTheme.setValue(!this.switchTheme.value);
   }
-} 
+}

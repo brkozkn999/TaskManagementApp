@@ -25,9 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<TaskDto> getEmployeeTasksById(Long userId) {
-        // Kullanıcının id'sine göre atanmış görevleri getir
         List<Task> tasks = taskRepository.findByUserId(userId);
-        // Görevleri TaskDto'ya dönüştür ve döndür
         return tasks.stream()
                 .map(Task::getTaskDto)
                 .collect(Collectors.toList());
@@ -35,15 +33,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Long getCurrentEmployeeId() {
-        // Spring Security ile kimlik doğrulaması yapılabilir, şu an için basit bir örnek kullanıyoruz.
-        // Örneğin, güvenliği sağlamak için JWT veya Spring Security'nin yeteneklerini kullanabilirsiniz.
-
-        // Şu an için örneğin, mevcut kullanıcıyı bulalım.
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         Optional<User> optionalUser = userRepository.findFirstByEmail(email);
-
-        // Eğer kullanıcı varsa, onun ID'sini döndür, yoksa null.
         return optionalUser.map(User::getId).orElse(null);
     }
 

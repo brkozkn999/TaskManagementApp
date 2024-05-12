@@ -20,6 +20,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatListModule } from "@angular/material/list";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
     exports: [
@@ -43,7 +44,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
         MatTableModule,
         MatListModule,
         MatSidenavModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatSlideToggleModule
     ]
 })
 export class DemoAngularMaterialModule {
