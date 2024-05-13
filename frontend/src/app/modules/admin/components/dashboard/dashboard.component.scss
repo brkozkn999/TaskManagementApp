@@ -25,6 +25,37 @@
     min-height: 37vh;
     padding: 20px;
 
+    .add-task-card {
+        width: calc(33.33% - 20px);
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border-style: dashed;
+        border: 1px solid;
+        border-style: dashed;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        transition: .2s ease;
+
+        .add-task-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            .add-task-title {
+                font-size: 20px;
+                font-weight: 400;
+                text-transform: uppercase;
+                text-align: center;
+            }
+        
+        }
+    }
+
+    .add-task-card:hover {
+        transform: scale(1.05);
+    }
+
     .task-card {
         width: calc(33.33% - 20px);
         margin-bottom: 20px;

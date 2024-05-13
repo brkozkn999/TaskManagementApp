@@ -21,8 +21,8 @@
 </div>
 
 <div class="task-list">
-    <ng-container *ngIf="listOfTasks.length > 0; else noTasks">
-        <mat-card class="task-card" *ngFor="let task of listOfTasks | filter: searchText; let last = last">
+    <ng-container>
+        <mat-card class="task-card" *ngFor="let task of listOfTasks | filter: searchText">
             <div class="task-details">
                 <h2 class="task-name">{{ task.title }}</h2>
                 <p class="task-description">{{ task.description }}</p>
@@ -60,15 +60,13 @@
             </div>
         </mat-card>
     </ng-container>
-    <ng-template #noTasks>
-        <div class="task-list">
-            <p>No tasks found.</p>
-        </div>
-    </ng-template>
 
     <mat-card class="add-task-card" (click)="addNewTask()">
         <div class="add-task-content">
-            <p>Add new task</p>
+            <mat-icon>add</mat-icon>
+            <h2 class="add-task-title">
+                Add New Task
+            </h2>
         </div>
     </mat-card>
 </div>
